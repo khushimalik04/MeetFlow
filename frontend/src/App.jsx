@@ -16,25 +16,34 @@ import axios from "axios";
 //import { axiosInstance } from './lib/axios.js';
 import useAuthUser from "./hooks/useAuthUser.js";
 import PageLoader from './components/PageLoader.jsx';
+import Layout from './components/Layout.jsx';
+import { useThemeStore } from './store/useThemeStore.js';
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser();
+  const { theme, setTheme } = useThemeStore();
 
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
 
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  // }, [theme]);
+
   if (isLoading) return <PageLoader />;
-  
 
   
  
   return (
-    <div data-theme="night" className="min-h-screen bg-base-100 text-base-content">
+    <div className="min-h-screen bg-base-100 text-base-content" data-theme={theme}>
      {/* <button onClick={() => toast.success("Hello World!")}>Create A Toast</button> */}
 
       <Routes>
         <Route path="/" element= { isAuthenticated && isOnboarded ? (
-           <HomePage /> 
+          <Layout showSidebar={true}>
+            <HomePage /> 
+           </Layout>
+           
            ): (
            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
            )}/>
