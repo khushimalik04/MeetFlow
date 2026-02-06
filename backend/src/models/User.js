@@ -24,11 +24,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    LearningLanguage: {
+    learningLanguage: {
         type: String,
         default: "",
     },
-    Location: {
+    location: {
         type: String,
         default: "",
     },
@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
 
     friends:[{
         type: mongoose.Schema.Types.ObjectId,
-        reference: "User"
+        ref: "User"
     }]
 
 }, {timestamps: true});

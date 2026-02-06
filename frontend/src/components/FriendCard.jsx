@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { LANGUAGE_TO_FLAG } from "../constants";
 
 const FriendCard = ({ friend }) => {
+  
   return (
     <div className="card bg-base-200 hover:shadow-md transition-shadow">
       <div className="card-body p-4">
@@ -25,10 +26,11 @@ const FriendCard = ({ friend }) => {
             Learning: {friend.learningLanguage}
           </span>
         </div>
+       
+         <Link to={`/chat/${friend?._id ?? friend?.id}`} className="btn btn-outline w-full">
+  Message
+</Link>
 
-        <Link to={`/chat/${friend._id}`} className="btn btn-outline w-full">
-          Message
-        </Link>
       </div>
     </div>
   );

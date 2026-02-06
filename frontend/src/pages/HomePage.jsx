@@ -47,6 +47,8 @@ const HomePage = () => {
       setOutgoingRequestsIds(outgoingIds);
     }
   }, [outgoingFriendReqs]);
+  // console.log("Friends list:", friends);
+
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">

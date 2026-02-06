@@ -25,8 +25,9 @@ export async function getRecommendedUsers(req,res){
 
 export async function getFriends(req,res){
     try{
-        const user = await User.findById(req.user.id).select("friends")
-        .populate("friends","fullName profilePic nativeLanguage LearningLanguage");
+        const user = await User.findById(req.user.id)
+        .select("friends")
+        .populate("friends","_id fullName profilePic nativeLanguage learningLanguage");
 
         res.status(200).json(user.friends);
     }catch(error){
